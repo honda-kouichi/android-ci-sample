@@ -3,35 +3,16 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
-
     defaultConfig {
-        applicationId "net.actindi.android_ci_sample"
-        minSdkVersion 15
-        targetSdkVersion 23
+        applicationId "sample.android_ci_sample"
+        minSdkVersion 9
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    signingConfigs{
-        debug{
-            storeFile file("keystore/debug.keystore")
-            storePassword "android"
-            keyAlias "androiddebugkey"
-            keyPassword "android"
-        }
-        release{
-            storeFile file("keystore/release.keystore")
-            storePassword ""
-            keyAlias ""
-            keyPassword ""
-        }
-    }
-
     buildTypes {
-        debug{
-            debuggable true
-        }
         release {
-            debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -40,7 +21,9 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
     compile 'com.android.support:appcompat-v7:25.1.1'
-    compile 'com.google.android.gms:play-services:10.0.1'
+    testCompile 'junit:junit:4.12'
 }
