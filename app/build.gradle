@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.github.triplet.play'
 
 android {
     compileSdkVersion 25
@@ -15,6 +16,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile rootProject.file("release.keystore")
+            storePassword System.getenv("SAMPLE_RELEASE_STORE_PASSWORD")
+            keyAlias System.getenv("SAMPLE_RELEASE_KEY_ALIAS")
+            keyPassword System.getenv("SAMPLE_RELEASE_KEY_PASSWORD")
         }
     }
 }
@@ -26,4 +36,10 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.1.1'
     testCompile 'junit:junit:4.12'
+}
+
+play {
+    jsonFile = file('google_play_android_developer-a0418f3b2aa2.json')
+    track = 'beta' // or 'rollout' or 'beta' or 'alpha'
+    userFraction = 0.2 // only necessary for 'rollout', in this case default is 0.1 (10% of the target)
 }
