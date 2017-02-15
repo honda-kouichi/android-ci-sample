@@ -13,11 +13,18 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
+//        release {
+//            storeFile file("keystore/release.keystore.jks")
+//            storePassword System.getenv("SAMPLE_RELEASE_STORE_PASSWORD")
+//            keyAlias System.getenv("SAMPLE_RELEASE_KEY_ALIAS")
+//            keyPassword System.getenv("SAMPLE_RELEASE_KEY_PASSWORD")
+//        }
+        // Bitrise用
         release {
-            storeFile file("keystore/release.keystore.jks")
-            storePassword System.getenv("SAMPLE_RELEASE_STORE_PASSWORD")
-            keyAlias System.getenv("SAMPLE_RELEASE_KEY_ALIAS")
-            keyPassword System.getenv("SAMPLE_RELEASE_KEY_PASSWORD")
+            storeFile System.getenv("BITRISEIO_ANDROID_KEYSTORE_URL")
+            storePassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD")
+            keyAlias System.getenv("BITRISEIO_ANDROID_KEYSTORE_ALIAS")
+            keyPassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PASSWORD")
         }
     }
     buildTypes {
