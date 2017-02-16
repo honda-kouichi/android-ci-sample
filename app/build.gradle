@@ -21,7 +21,7 @@ android {
 //        }
         // Bitrise用
         release {
-            storeFile System.getenv("BITRISEIO_ANDROID_KEYSTORE_URL")
+            storeFile file("keystore/release.keystore.jks")
             storePassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD")
             keyAlias System.getenv("BITRISEIO_ANDROID_KEYSTORE_ALIAS")
             keyPassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PASSWORD")
