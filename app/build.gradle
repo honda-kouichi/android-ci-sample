@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 apply plugin: 'com.github.triplet.play'
 
 android {
@@ -34,6 +35,9 @@ android {
             signingConfig signingConfigs.release
         }
     }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
 }
 
 dependencies {
@@ -43,10 +47,14 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.1.1'
     testCompile 'junit:junit:4.12'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 
 play {
     jsonFile = file('google_play_android_developer-a0418f3b2aa2.json')
     track = 'alpha' // or 'rollout' or 'beta' or 'alpha'
     userFraction = 0.2 // only necessary for 'rollout', in this case default is 0.1 (10% of the target)
+}
+repositories {
+    mavenCentral()
 }
