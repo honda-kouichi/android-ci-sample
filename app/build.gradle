@@ -9,8 +9,8 @@ android {
         applicationId "sample.android_ci_sample"
         minSdkVersion 9
         targetSdkVersion 25
-        versionCode 8
-        versionName "8.0"
+        versionCode 9
+        versionName "9.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
@@ -56,7 +56,7 @@ dependencies {
 
 play {
     jsonFile = file('google_play_android_developer-a0418f3b2aa2.json')
-    track = 'alpha' // or 'rollout' or 'beta' or 'alpha'
+    track = 'beta' // or 'rollout' or 'beta' or 'alpha'
     userFraction = 0.2 // only necessary for 'rollout', in this case default is 0.1 (10% of the target)
 }
 repositories {
