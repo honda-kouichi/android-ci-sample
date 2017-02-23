@@ -14,18 +14,12 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
-//        release {
-//            storeFile file("keystore/release.keystore.jks")
-//            storePassword System.getenv("SAMPLE_RELEASE_STORE_PASSWORD")
-//            keyAlias System.getenv("SAMPLE_RELEASE_KEY_ALIAS")
-//            keyPassword System.getenv("SAMPLE_RELEASE_KEY_PASSWORD")
-//        }
         // Bitrise用
         release {
             storeFile file("keystore/release.keystore.jks")
-            storePassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD")
-            keyAlias System.getenv("BITRISEIO_ANDROID_KEYSTORE_ALIAS")
-            keyPassword System.getenv("BITRISEIO_ANDROID_KEYSTORE_PASSWORD")
+            storePassword System.getenv("SAMPLE_APP_RELEASE_KEY_STORE_PASSWORD")
+            keyAlias System.getenv("SAMPLE_APP_RELEASE_KEY_ALIAS")
+            keyPassword System.getenv("SAMPLE_APP_RELEASE_KEY_PASSWORD")
         }
     }
     buildTypes {
@@ -55,9 +49,9 @@ dependencies {
 }
 
 play {
-    jsonFile = file('google_play_android_developer-a0418f3b2aa2.json')
+    jsonFile = file('google_play_android_developer-81b4c29ef6d3.json')
     track = 'beta' // or 'rollout' or 'beta' or 'alpha'
-    userFraction = 0.2 // only necessary for 'rollout', in this case default is 0.1 (10% of the target)
+    userFraction = 1 // only necessary for 'rollout', in this case default is 0.1 (10% of the target)
 }
 repositories {
     mavenCentral()
